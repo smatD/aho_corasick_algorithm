@@ -1,0 +1,19 @@
+How alo corasick works
+Aho-corasick is an alhorithm used to search for multiple words or patterns inside of a text.
+Instead of searching for each word separately it can search for all of them while reading the text.
+
+The algorithm creates a trie, which is a tree like data structure.
+Each character is shown by a connection between nodes, if two patterns begin on the same characters, they share the same path.
+
+After creating the trie, the algorithm builds links between BFS. Failure links are used when the character doesn't match the path.
+They point to another node that has the longest possible suffix (LPS) that is also a prefix of one of the patterns.
+This lets the algorithm continue to search without going back.
+
+The algorithm also uses output links, they are useful when more than one pattern ends at the same position.
+Like when searching for "she", the pattern "he" can also be found.
+
+During searching the algorithm reads the text and follows the trie connections when the characters match.
+If there are no matching connections, it follows links until it finds a possible match, and when a pattern is found the algorithm records its position.
+
+The time complexity is O(m+n+z), where m is the total length of all patterns, n is the length of the text, z is the number of matches found.
+The space complexity is O(m+k) where k is the number of patterns.
